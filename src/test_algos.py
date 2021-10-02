@@ -109,63 +109,66 @@ def test_random_array(data):
 
 def test_sorted_array(data):
     """
-    Test the algos for a sorted array of 2^10 elements
+    Test the algos for a sorted array of elements
     """
-    
-    test_arr = [i for i in range(2**10)]
     print("Testing for sorted Array")
-    # Test and time selection sort
-    test_selection_sort(deepcopy(test_arr), data, "sorted")
+    for arr_len in [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]:
+        test_arr = [i for i in range(arr_len)]
+        print("Array length:", arr_len, flush=True)
+        # Test and time selection sort
+        test_selection_sort(deepcopy(test_arr), data, "sorted")
 
-    # Test and time Insertion sort
-    test_insertion_sort(deepcopy(test_arr), data, "sorted")
+        # Test and time Insertion sort
+        test_insertion_sort(deepcopy(test_arr), data, "sorted")
 
-    # Test and time Shell sort
-    test_shell_sort(deepcopy(test_arr), data, "sorted")
+        # Test and time Shell sort
+        test_shell_sort(deepcopy(test_arr), data, "sorted")
 
-    # Test and time Merge sort
-    test_merge_sort(deepcopy(test_arr), data, "sorted")
+        # Test and time Merge sort
+        test_merge_sort(deepcopy(test_arr), data, "sorted")
 
 
 def test_sorted_inverse_array(data):
     """
-    Test the algos for a sorted inverse array of 2^10 elements
+    Test the algos for a sorted inverse array elements
     """
-    
-    test_arr = [i for i in range(2**10, 0, -1)]
     print("Testing for sorted inverse Array")
-    # Test and time selection sort
-    test_selection_sort(deepcopy(test_arr), data, "sorted_inverse")
+    for arr_len in [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]:
+        test_arr = [i for i in range(arr_len, 0, -1)]
+        print("Array length:", arr_len, flush=True)
+        # Test and time selection sort
+        test_selection_sort(deepcopy(test_arr), data, "sorted_inverse")
 
-    # Test and time Insertion sort
-    test_insertion_sort(deepcopy(test_arr), data, "sorted_inverse")
+        # Test and time Insertion sort
+        test_insertion_sort(deepcopy(test_arr), data, "sorted_inverse")
 
-    # Test and time Shell sort
-    test_shell_sort(deepcopy(test_arr), data, "sorted_inverse")
+        # Test and time Shell sort
+        test_shell_sort(deepcopy(test_arr), data, "sorted_inverse")
 
-    # Test and time Merge sort
-    test_merge_sort(deepcopy(test_arr), data, "sorted_inverse")
+        # Test and time Merge sort
+        test_merge_sort(deepcopy(test_arr), data, "sorted_inverse")
 
 
 def test_array_w_repetitions(data):
     """
-    Test the algos for an array of {1, 2, 3} elems of len 2^10.
+    Test the algos for an array of {1, 2, 3} elems.
     Run 3 experiments
     """
     for i in range(3):
-        test_arr = [random.randint(1, 3) for _ in range(2**10)]
-        print("Testing for an array of {1, 2, 3}, Take 1...")
-        # Test and time selection sort
-        test_selection_sort(deepcopy(test_arr), data, "with_repetitions")
+        for arr_len in [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]:
+            test_arr = [random.randint(1, 3) for _ in range(arr_len)]
+            print("Test:", i, "Array length:", arr_len, flush=True)
+            # Test and time selection sort
+            test_selection_sort(deepcopy(test_arr), data, "with_repetitions_{}".format(i+1))
 
-        # Test and time Insertion sort
-        test_insertion_sort(deepcopy(test_arr), data, "with_repetitions")
+            # Test and time Insertion sort
+            test_insertion_sort(deepcopy(test_arr), data, "with_repetitions_{}".format(i+1))
 
-        # Test and time Shell sort
-        test_shell_sort(deepcopy(test_arr), data, "with_repetitions")
+            # Test and time Shell sort
+            test_shell_sort(deepcopy(test_arr), data, "with_repetitions_{}".format(i+1))
 
-        # Test and time Merge sort
-        test_merge_sort(deepcopy(test_arr), data, "with_repetitions")
+            # Test and time Merge sort
+            test_merge_sort(deepcopy(test_arr), data, "with_repetitions_{}".format(i+1))
 
 
 def to_json_file(data):
@@ -190,7 +193,9 @@ def test_all():
             "random_5": [],
             "sorted": [],
             "sorted_inverse": [],
-            "with_repetitions": []
+            "with_repetitions_1": [],
+            "with_repetitions_2": [],
+            "with_repetitions_3": []
 
         },
         "insertion_sort": {
@@ -201,7 +206,9 @@ def test_all():
             "random_5": [],
             "sorted": [],
             "sorted_inverse": [],
-            "with_repetitions": []
+            "with_repetitions_1": [],
+            "with_repetitions_2": [],
+            "with_repetitions_3": []
         },
         "merge_sort": {
             "random_1": [],
@@ -211,7 +218,9 @@ def test_all():
             "random_5": [],
             "sorted": [],
             "sorted_inverse": [],
-            "with_repetitions": []
+            "with_repetitions_1": [],
+            "with_repetitions_2": [],
+            "with_repetitions_3": []
         },
         "shell_sort": {
             "random_1": [],
@@ -221,7 +230,9 @@ def test_all():
             "random_5": [],
             "sorted": [],
             "sorted_inverse": [],
-            "with_repetitions": []
+            "with_repetitions_1": [],
+            "with_repetitions_2": [],
+            "with_repetitions_3": []
         },
     }
     test_random_array(data)
