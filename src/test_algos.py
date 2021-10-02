@@ -15,42 +15,68 @@ from insertion_sort import insertion_sort
 from shell_sort import shell_sort
 
 
-def test_random_array():
+
+def test_selection_sort(arr_copy, data, data_param):
+    """
+    Test selection sort and write the results to the data and to json.
+    """
+    print("Started Selection Sort...")
+    start = time.time()
+
+    comp = selection_sort(arr_copy)
+
+    end = time.time() - start
+    data["selection_sort"][data_param].append((end, comp))
+    to_json_file(data)
+
+
+def test_insertion_sort(arr_copy, data, data_param):
+    """
+    Test insertion sort and write the results to the data and to json.
+    """
+    print("Started Insertion Sort...")
+    start = time.time()
+
+    comp = insertion_sort(arr_copy)
+
+    end = time.time() - start
+    data["insertion_sort"][data_param].append((end, comp))
+    to_json_file(data)
+
+
+def test_shell_sort(arr_copy, data, data_param):
+    """
+    Test shell sort and write the results to the data and to json.
+    """
+    print("Started Shell Sort...")
+    start = time.time()
+
+    comp = shell_sort(arr_copy)
+
+    end = time.time() - start
+    data["shell_sort"][data_param].append((end, comp))
+    to_json_file(data)
+
+
+def test_merge_sort(arr_copy, data, data_param):
+    """
+    Test merge sort and write the results to the data and to json.
+    """
+    print("Started Merge Sort...")
+    start = time.time()
+
+    comp = merge_sort(arr_copy)
+
+    end = time.time() - start
+    data["merge_sort"][data_param].append((end, comp))
+    to_json_file(data)
+
+
+def test_random_array(data):
     """
     Test the algos for arrays of size 2^7 - 2^15.
     Testing 5 times and getting the averge time.
     """
-
-    data = {
-        "selection_sort": {
-            1: [],
-            2: [],
-            3: [],
-            4: [],
-            5: [],
-        },
-        "insertion_sort": {
-            1: [],
-            2: [],
-            3: [],
-            4: [],
-            5: [],
-        },
-        "merge_sort": {
-            1: [],
-            2: [],
-            3: [],
-            4: [],
-            5: [],
-        },
-        "shell_sort": {
-            1: [],
-            2: [],
-            3: [],
-            4: [],
-            5: [],
-        },
-    }
 
     for j in range(5):
         for arr_len in [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]:
@@ -65,59 +91,146 @@ def test_random_array():
             # Print iteration data
             print("Test:", j, "Array length:", arr_len, flush=True)
 
-            #
-            # Start the timer for selection sort
-            print("Started Selection Sort...")
-            start = time.time()
+            # START THE TESTING ALGOS
+            ###############################
+            # Test and time selection sort
+            test_selection_sort(copy1, data, "random_{}".format(j+1))
 
-            selection_sort(deepcopy(copy1))
+            # Test and time Insertion sort
+            test_insertion_sort(copy2, data, "random_{}".format(j+1))
 
-            end = time.time() - start
-            data["selection_sort"][j+1].append(end)
-            to_json_file(data)
+            # Test and time Shell sort
+            test_shell_sort(copy3, data, "random_{}".format(j+1))
 
-            #
-            # Start the timer for Insertion sort
-            print("Started Insertion Sort...")
-            start = time.time()
+            # Test and time Merge sort
+            test_merge_sort(copy4, data, "random_{}".format(j+1))
 
-            insertion_sort(deepcopy(copy2))
 
-            end = time.time() - start
-            data["insertion_sort"][j+1].append(end)
-            to_json_file(data)
 
-            #
-            # Start the timer for Shell sort
-            print("Started Shell Sort...")
-            start = time.time()
+def test_sorted_array(data):
+    """
+    Test the algos for a sorted array of 2^10 elements
+    """
+    
+    test_arr = [i for i in range(2**10)]
+    print("Testing for sorted Array")
+    # Test and time selection sort
+    test_selection_sort(deepcopy(test_arr), data, "sorted")
 
-            shell_sort(deepcopy(copy3))
+    # Test and time Insertion sort
+    test_insertion_sort(deepcopy(test_arr), data, "sorted")
 
-            end = time.time() - start
-            data["shell_sort"][j+1].append(end)
-            to_json_file(data)
+    # Test and time Shell sort
+    test_shell_sort(deepcopy(test_arr), data, "sorted")
 
-            #
-            # Start the timer for Merge sort
-            print("Started Merge Sort...")
-            start = time.time()
+    # Test and time Merge sort
+    test_merge_sort(deepcopy(test_arr), data, "sorted")
 
-            merge_sort(deepcopy(copy4))
 
-            end = time.time() - start
-            data["merge_sort"][j+1].append(end)
-            to_json_file(data)
+def test_sorted_inverse_array(data):
+    """
+    Test the algos for a sorted inverse array of 2^10 elements
+    """
+    
+    test_arr = [i for i in range(2**10, 0, -1)]
+    print("Testing for sorted inverse Array")
+    # Test and time selection sort
+    test_selection_sort(deepcopy(test_arr), data, "sorted_inverse")
 
+    # Test and time Insertion sort
+    test_insertion_sort(deepcopy(test_arr), data, "sorted_inverse")
+
+    # Test and time Shell sort
+    test_shell_sort(deepcopy(test_arr), data, "sorted_inverse")
+
+    # Test and time Merge sort
+    test_merge_sort(deepcopy(test_arr), data, "sorted_inverse")
+
+
+def test_array_w_repetitions(data):
+    """
+    Test the algos for an array of {1, 2, 3} elems of len 2^10.
+    Run 3 experiments
+    """
+    for i in range(3):
+        test_arr = [random.randint(1, 3) for _ in range(2**10)]
+        print("Testing for an array of {1, 2, 3}, Take 1...")
+        # Test and time selection sort
+        test_selection_sort(deepcopy(test_arr), data, "with_repetitions")
+
+        # Test and time Insertion sort
+        test_insertion_sort(deepcopy(test_arr), data, "with_repetitions")
+
+        # Test and time Shell sort
+        test_shell_sort(deepcopy(test_arr), data, "with_repetitions")
+
+        # Test and time Merge sort
+        test_merge_sort(deepcopy(test_arr), data, "with_repetitions")
 
 
 def to_json_file(data):
-    with open('results1.json', 'w') as data_file:
-        json.dump(data, data_file)
+    """
+    Write the data to a json file
+    """
+    with open('raw_test_results.json', 'w') as data_file:
+        json.dump(data, data_file, indent=4)
 
 
+def test_all():
+    """
+    Run the experiment for all the 4 sorting algos and 8 types of inputs.
+    """
 
-test_random_array()
+    data = {
+        "selection_sort": {
+            "random_1": [],
+            "random_2": [],
+            "random_3": [],
+            "random_4": [],
+            "random_5": [],
+            "sorted": [],
+            "sorted_inverse": [],
+            "with_repetitions": []
+
+        },
+        "insertion_sort": {
+            "random_1": [],
+            "random_2": [],
+            "random_3": [],
+            "random_4": [],
+            "random_5": [],
+            "sorted": [],
+            "sorted_inverse": [],
+            "with_repetitions": []
+        },
+        "merge_sort": {
+            "random_1": [],
+            "random_2": [],
+            "random_3": [],
+            "random_4": [],
+            "random_5": [],
+            "sorted": [],
+            "sorted_inverse": [],
+            "with_repetitions": []
+        },
+        "shell_sort": {
+            "random_1": [],
+            "random_2": [],
+            "random_3": [],
+            "random_4": [],
+            "random_5": [],
+            "sorted": [],
+            "sorted_inverse": [],
+            "with_repetitions": []
+        },
+    }
+    test_random_array(data)
+    test_sorted_array(data)
+    test_sorted_inverse_array(data)
+    test_array_w_repetitions(data)
+
+
+test_all()
 
 
 
