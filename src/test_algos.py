@@ -154,9 +154,10 @@ def test_array_w_repetitions(data):
     Test the algos for an array of {1, 2, 3} elems.
     Run 3 experiments
     """
-    for i in range(3):
-        for arr_len in [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]:
-            test_arr = [random.randint(1, 3) for _ in range(arr_len)]
+    for arr_len in [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]:
+        test_arr = [random.randint(1, 3) for _ in range(arr_len)]
+        for i in range(3):
+            random.shuffle(test_arr)
             print("Test:", i, "Array length:", arr_len, flush=True)
             # Test and time selection sort
             test_selection_sort(deepcopy(test_arr), data, "with_repetitions_{}".format(i+1))
@@ -175,7 +176,7 @@ def to_json_file(data):
     """
     Write the data to a json file
     """
-    with open('raw_test_results.json', 'w') as data_file:
+    with open('raw_test_results1.json', 'w') as data_file:
         json.dump(data, data_file, indent=4)
 
 
@@ -235,9 +236,9 @@ def test_all():
             "with_repetitions_3": []
         },
     }
-    test_random_array(data)
-    test_sorted_array(data)
-    test_sorted_inverse_array(data)
+    # test_random_array(data)
+    # test_sorted_array(data)
+    # test_sorted_inverse_array(data)
     test_array_w_repetitions(data)
 
 
