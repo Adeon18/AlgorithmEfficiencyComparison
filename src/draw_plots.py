@@ -1,5 +1,7 @@
 """
 This module draws plots using the data from the final_results.json file.
+
+Basically a bunch of hardcoded plots - bad code warning!!!!
 """
 import json
 import matplotlib.pyplot as plt
@@ -37,7 +39,8 @@ def draw_plot_for_random():
 
     merge_sort_times = []
     merge_sort_comp = []
-    sizes = [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]
+    # These are the powers of 2
+    sizes = [7, 8, 9, 10, 11, 12, 13, 14, 15]
 
     for i in range(9):
         selection_sort_times.append(round(data["selection_sort"]["random_average"][i][0], 5))
@@ -58,8 +61,8 @@ def draw_plot_for_random():
     plt.plot(sizes, insertion_sort_times, "r", linewidth=3.5, label="Insertion Sort")
     plt.plot(sizes, shell_sort_times, "b", linewidth=3.5, label="Shell Sort")
     plt.plot(sizes, merge_sort_times, "g", linewidth=3.5, label="Merge Sort")
-    plt.ylabel('Comparisons')
-    plt.xlabel('Size')
+    plt.ylabel('Time')
+    plt.xlabel('Size - 2^X')
     plt.yscale("log")
     plt.legend(prop={'size': 20}, loc="lower right")
 
@@ -69,8 +72,8 @@ def draw_plot_for_random():
     plt.plot(sizes, insertion_sort_comp, "r", linewidth=3.5, label="Insertion Sort")
     plt.plot(sizes, shell_sort_comp, "b", linewidth=3.5, label="Shell Sort")
     plt.plot(sizes, merge_sort_comp, "g", linewidth=3.5, label="Merge Sort")
-    plt.ylabel('Time')
-    plt.xlabel('Size')
+    plt.ylabel('Comparisons')
+    plt.xlabel('Size - 2^X')
     plt.yscale("log")
     plt.legend(prop={'size': 20}, loc="lower right")
 
@@ -95,8 +98,8 @@ def draw_plot_for_sorted():
 
     merge_sort_times = []
     merge_sort_comp = []
-    sizes = [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]
-
+    # These are the powers of 2
+    sizes = [7, 8, 9, 10, 11, 12, 13, 14, 15]
     for i in range(9):
         selection_sort_times.append(round(data["selection_sort"]["sorted"][i][0], 5))
         selection_sort_comp.append(data["selection_sort"]["sorted"][i][1])
@@ -116,8 +119,8 @@ def draw_plot_for_sorted():
     plt.plot(sizes, insertion_sort_times, "r", linewidth=3.5, label="Insertion Sort")
     plt.plot(sizes, shell_sort_times, "b", linewidth=3.5, label="Shell Sort")
     plt.plot(sizes, merge_sort_times, "g", linewidth=3.5, label="Merge Sort")
-    plt.ylabel('Comparisons')
-    plt.xlabel('Size')
+    plt.ylabel('Time')
+    plt.xlabel('Size - 2^X')
     plt.yscale("log")
     plt.legend(prop={'size': 20}, loc="lower right")
 
@@ -127,8 +130,8 @@ def draw_plot_for_sorted():
     plt.plot(sizes, insertion_sort_comp, "r", linewidth=3.5, label="Insertion Sort")
     plt.plot(sizes, shell_sort_comp, "b", linewidth=3.5, label="Shell Sort")
     plt.plot(sizes, merge_sort_comp, "g", linewidth=3.5, label="Merge Sort")
-    plt.ylabel('Time')
-    plt.xlabel('Size')
+    plt.ylabel('Comparisons')
+    plt.xlabel('Size - 2^X')
     plt.yscale("log")
     plt.legend(prop={'size': 20}, loc="lower right")
 
@@ -153,8 +156,8 @@ def draw_plot_for_sorted_inverse():
 
     merge_sort_times = []
     merge_sort_comp = []
-    sizes = [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]
-
+    # These are the powers of 2
+    sizes = [7, 8, 9, 10, 11, 12, 13, 14, 15]
     for i in range(9):
         selection_sort_times.append(round(data["selection_sort"]["sorted_inverse"][i][0], 5))
         selection_sort_comp.append(data["selection_sort"]["sorted_inverse"][i][1])
@@ -174,8 +177,8 @@ def draw_plot_for_sorted_inverse():
     plt.plot(sizes, insertion_sort_times, "r", linewidth=3.5, label="Insertion Sort")
     plt.plot(sizes, shell_sort_times, "b", linewidth=3.5, label="Shell Sort")
     plt.plot(sizes, merge_sort_times, "g", linewidth=3.5, label="Merge Sort")
-    plt.ylabel('Comparisons')
-    plt.xlabel('Size')
+    plt.ylabel('Time')
+    plt.xlabel('Size - 2^X')
     plt.yscale("log")
     plt.legend(prop={'size': 20}, loc="lower right")
 
@@ -185,8 +188,8 @@ def draw_plot_for_sorted_inverse():
     plt.plot(sizes, insertion_sort_comp, "r", linewidth=3.5, label="Insertion Sort")
     plt.plot(sizes, shell_sort_comp, "b", linewidth=3.5, label="Shell Sort")
     plt.plot(sizes, merge_sort_comp, "g", linewidth=3.5, label="Merge Sort")
-    plt.ylabel('Time')
-    plt.xlabel('Size')
+    plt.ylabel('Comparisons')
+    plt.xlabel('Size - 2^X')
     plt.yscale("log")
     plt.legend(prop={'size': 20}, loc="lower right")
 
@@ -211,8 +214,8 @@ def draw_plot_for_123():
 
     merge_sort_times = []
     merge_sort_comp = []
-    sizes = [2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15]
-
+    # These are the powers of 2
+    sizes = [7, 8, 9, 10, 11, 12, 13, 14, 15]
     for i in range(9):
         selection_sort_times.append(round(data["selection_sort"]["with_repetitions"][i][0], 5))
         selection_sort_comp.append(data["selection_sort"]["with_repetitions"][i][1])
@@ -232,8 +235,8 @@ def draw_plot_for_123():
     plt.plot(sizes, insertion_sort_times, "r", linewidth=3.5, label="Insertion Sort")
     plt.plot(sizes, shell_sort_times, "b", linewidth=3.5, label="Shell Sort")
     plt.plot(sizes, merge_sort_times, "g", linewidth=3.5, label="Merge Sort")
-    plt.ylabel('Comparisons')
-    plt.xlabel('Size')
+    plt.ylabel('Time')
+    plt.xlabel('Size - 2^X')
     plt.yscale("log")
     plt.legend(prop={'size': 20}, loc="lower right")
 
@@ -243,8 +246,8 @@ def draw_plot_for_123():
     plt.plot(sizes, insertion_sort_comp, "r", linewidth=3.5, label="Insertion Sort")
     plt.plot(sizes, shell_sort_comp, "b", linewidth=3.5, label="Shell Sort")
     plt.plot(sizes, merge_sort_comp, "g", linewidth=3.5, label="Merge Sort")
-    plt.ylabel('Time')
-    plt.xlabel('Size')
+    plt.ylabel('Comparisons')
+    plt.xlabel('Size - 2^X')
     plt.yscale("log")
     plt.legend(prop={'size': 20}, loc="lower right")
 
