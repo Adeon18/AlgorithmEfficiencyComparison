@@ -20,8 +20,11 @@ def read_json(path):
 
 
 def draw_plot_for_random():
-
-    data = read_json("final_results.json")
+    """
+    Draw the proper MatplotLib plots for the random arrays.
+    Is a bit hardcoded
+    """
+    data = read_json("data/final_results.json")
 
     selection_sort_times = []
     selection_sort_comp = []
@@ -75,8 +78,11 @@ def draw_plot_for_random():
 
 
 def draw_plot_for_sorted():
-
-    data = read_json("final_results.json")
+    """
+    Draw the proper MatplotLib plots for the sorted arrays.
+    Is a bit hardcoded.
+    """
+    data = read_json("data/final_results.json")
 
     selection_sort_times = []
     selection_sort_comp = []
@@ -130,8 +136,11 @@ def draw_plot_for_sorted():
 
 
 def draw_plot_for_sorted_inverse():
-
-    data = read_json("final_results.json")
+    """
+    Draw the proper MatplotLib plots for the inversely sorted arrays.
+    Is a bit hardcoded
+    """
+    data = read_json("data/final_results.json")
 
     selection_sort_times = []
     selection_sort_comp = []
@@ -185,8 +194,11 @@ def draw_plot_for_sorted_inverse():
 
 
 def draw_plot_for_123():
-
-    data = read_json("final_results.json")
+    """
+    Draw the proper MatplotLib plots for the shuffled 123 arrays.
+    Is a bit hardcoded.
+    """
+    data = read_json("data/final_results.json")
 
     selection_sort_times = []
     selection_sort_comp = []
@@ -237,7 +249,16 @@ def draw_plot_for_123():
     plt.legend(prop={'size': 20}, loc="lower right")
 
     plt.show()
-    
 
 
-draw_plot_for_123()
+def draw_plots():
+    """
+    Draw all the plots at once.
+    """
+    draw_plot_for_random()
+    draw_plot_for_sorted()
+    draw_plot_for_sorted_inverse()
+    draw_plot_for_123()
+
+
+draw_plots()

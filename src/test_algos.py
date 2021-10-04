@@ -176,13 +176,14 @@ def to_json_file(data):
     """
     Write the data to a json file
     """
-    with open('raw_test_results1.json', 'w') as data_file:
+    with open('data/raw_test_results1.json', 'w') as data_file:
         json.dump(data, data_file, indent=4)
 
 
 def test_all():
     """
     Run the experiment for all the 4 sorting algos and 8 types of inputs.
+    Will take about 20 minutes.
     """
 
     data = {
@@ -236,9 +237,9 @@ def test_all():
             "with_repetitions_3": []
         },
     }
-    # test_random_array(data)
-    # test_sorted_array(data)
-    # test_sorted_inverse_array(data)
+    test_random_array(data)
+    test_sorted_array(data)
+    test_sorted_inverse_array(data)
     test_array_w_repetitions(data)
 
 

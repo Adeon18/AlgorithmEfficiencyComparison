@@ -20,7 +20,7 @@ def to_json_file(data):
     """
     Write the data to a json file
     """
-    with open('final_results.json', 'w') as data_file:
+    with open('data/final_results.json', 'w') as data_file:
         json.dump(data, data_file, indent=4)
 
 
@@ -113,7 +113,7 @@ def trim_data():
         },
     }
 
-    old_data = read_json("raw_test_results.json")
+    old_data = read_json("data/raw_test_results.json")
 
     count_average_time_and_comp(old_data, new_data)
     trim_rest(old_data, new_data)
